@@ -33,7 +33,7 @@ public class WalletService
 	
 	public Wallet findByCryptoName(String name)
 	{
-		Wallet wallet = walletDAO.findByCrytoName(name);
+		Wallet wallet = walletDAO.findByCryptoName(name);
 		return wallet;
 	}
 	

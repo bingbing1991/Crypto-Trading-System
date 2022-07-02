@@ -30,6 +30,15 @@ public class CryptoService {
 		cryptoDAO.updateCryptoById(bidPrice, askPrice, cryptoId);
 	}
 	
+//	public void updateCrypto(float bidPrice, float askPrice, Long cryptoId)
+//	{
+//		Crypto crypto = new Crypto();
+//		crypto.setAskPrice(askPrice);
+//		crypto.setBidPrice(bidPrice);
+//		crypto.setCryptoId(cryptoId);
+//		cryptoDAO.save(crypto);
+//	}
+	
 	public Crypto save(Crypto crypto)
 	{
 		return cryptoDAO.save(crypto);
