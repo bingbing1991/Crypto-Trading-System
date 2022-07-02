@@ -59,7 +59,6 @@ public class CryptoController
 		JSONObject jsnobject = new JSONObject(input);
 		String cryptoName = jsnobject.getString("cryptoName");
 		Crypto crypto = cryptoService.findByName(cryptoName);
-		logger.info(cryptoName);
 		if(crypto != null)
 		{
 			dto.setAskPrice(Float.toString(crypto.getAskPrice()));

@@ -22,7 +22,7 @@ public class Wallet
 	private Long walletId;
 	
 	@Column(name = "user_id")
-	private String userId;
+	private Long userId;
 	
 	@Column(name = "crypto_name")
 	private String cryptoName;
@@ -38,11 +38,11 @@ public class Wallet
 		this.walletId = walletId;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
