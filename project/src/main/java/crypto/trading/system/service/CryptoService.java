@@ -1,5 +1,7 @@
 package crypto.trading.system.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,11 @@ public class CryptoService {
 		return crypto;
 	}
 	
+	public List<Crypto> findAll()
+	{
+		List<Crypto> cryptoList = cryptoDAO.findAll();
+		return cryptoList;
+	}
 	
 	public void updateCrypto(float bidPrice, float askPrice, Long cryptoId)
 	{

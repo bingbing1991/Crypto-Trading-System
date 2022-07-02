@@ -1,6 +1,6 @@
 package crypto.trading.system.dto;
 
-public class CryptoDTO
+public class Crypto1DTO
 {
 	private String symbol;
 	
