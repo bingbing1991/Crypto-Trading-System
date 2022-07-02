@@ -26,7 +26,7 @@ public class WalletService
 		return walletList;
 	}
 	
-	public Wallet saveUser(Wallet wallet)
+	public Wallet saveWallet(Wallet wallet)
 	{
 		return walletDAO.save(wallet);
 	}
