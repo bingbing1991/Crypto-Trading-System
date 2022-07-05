@@ -30,6 +30,10 @@ public class WalletController
 
 	Logger logger = LoggerFactory.getLogger(WalletController.class);
 	
+	/*
+	 * API TO RETRIEVE ALL THE USERS CRYPTOCURRENCIES WALLET BALANCE
+	 * 
+	 * */
 	@GetMapping("/getAllUserWallet")
 	public ResponseEntity<JsonWrapperObject> getAllUserWallet(@RequestBody String input) throws Exception
 	{

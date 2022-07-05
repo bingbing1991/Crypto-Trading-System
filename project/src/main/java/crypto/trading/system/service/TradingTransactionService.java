@@ -30,4 +30,11 @@ public class TradingTransactionService
 	{
 		return tradingTransactionDAO.save(tradingTransaction);
 	}
+	
+	public float amountToTrade(float amount, float rate)
+	{
+		float tradeAmount;
+		tradeAmount = amount * rate; 
+		return tradeAmount;
+	}
 }

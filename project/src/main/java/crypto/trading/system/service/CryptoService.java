@@ -2,7 +2,11 @@ package crypto.trading.system.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import crypto.trading.system.domain.Crypto;
@@ -32,19 +36,21 @@ public class CryptoService {
 		return cryptoList;
 	}
 	
-	public void updateCrypto(float bidPrice, float askPrice, Long cryptoId)
+	public void updateBidDetailAndAskDetailById(float bidPrice, float askPrice, String bidSource, String askSource, Long cryptoId)
 	{
-		cryptoDAO.updateCryptoById(bidPrice, askPrice, cryptoId);
+		cryptoDAO.updateBidDetailAndAskDetailById(bidPrice, askPrice, bidSource, askSource, cryptoId);
 	}
 	
-//	public void updateCrypto(float bidPrice, float askPrice, Long cryptoId)
-//	{
-//		Crypto crypto = new Crypto();
-//		crypto.setAskPrice(askPrice);
-//		crypto.setBidPrice(bidPrice);
-//		crypto.setCryptoId(cryptoId);
-//		cryptoDAO.save(crypto);
-//	}
+
+	public void updateBidDetailById(float bidPrice, String bidSource, Long id)
+	{
+		cryptoDAO.updateBidDetailById(bidPrice, bidSource, id);
+	}
+
+	public void updateAskDetailById(float askPrice, String askSource, Long id)
+	{
+		cryptoDAO.updateAskDetailById(askPrice, askSource, id);
+	}
 	
 	public Crypto save(Crypto crypto)
 	{

@@ -42,11 +42,17 @@ public class ProjectApplication
 	
 	Logger logger = LoggerFactory.getLogger(ProjectApplication.class);
 	
-	public static void main(String[] args) {
-		SpringApplication.run(ProjectApplication.class, args);
+	public static void main(String[] args)
+	{
+        SpringApplication.run(ProjectApplication.class, args);
 	}
 	
 	
+	/*
+	 * INTERVAL SCHEDULAR API TO RETRIEVE FROM SOURCES 
+	 * AND UPDATE DB WITH CRYPTO TRADING PAIRSLATEST AGGREGATED PRICE
+	 * 
+	 * */
 	@Scheduled(fixedRate = 10000)
 	public void updateCryto() throws Exception
 	{
@@ -63,7 +69,7 @@ public class ProjectApplication
 		for(Crypto1DTO dto : inputList1)
 		{
 //			logger.info("Name of Cryto is: {}",dto.getSymbol());
-			String name = dto.getSymbol();
+			String name = dto.getSymbol().toUpperCase();
 			float bidPrice = Float.parseFloat(dto.getBidPrice());
 			float askPrice = Float.parseFloat(dto.getAskPrice());
 			if(name != null && !"".equals(name))
@@ -76,18 +82,22 @@ public class ProjectApplication
 					existingCrypto.setAskPrice(askPrice);
 					existingCrypto.setBidPrice(bidPrice);
 					existingCrypto.setName(name);
+					existingCrypto.setBidSource(url1);
+					existingCrypto.setAskSource(url1);
 					cryptoService.save(existingCrypto);
 				}
 				else//updating existing crypto records
 				{
-					cryptoService.updateCrypto(bidPrice, askPrice, existingCrypto.getCryptoId());
+					existingCrypto.setBidSource(url1);
+					existingCrypto.setAskSource(url1);
+					cryptoService.updateBidDetailAndAskDetailById(bidPrice, askPrice, url1, url1, existingCrypto.getCryptoId());
 				}
 			}
 		}
 		for(Crypto2DTO dto : inputList2)
 		{
 //			logger.info("Name of Cryto is: {}",dto.getSymbol());
-			String name = dto.getSymbol();
+			String name = dto.getSymbol().toUpperCase();
 			float bidPrice = Float.parseFloat(dto.getBid());
 			float askPrice = Float.parseFloat(dto.getAsk());
 			if(name != null && !"".equals(name))
@@ -100,23 +110,24 @@ public class ProjectApplication
 					existingCrypto.setAskPrice(askPrice);
 					existingCrypto.setBidPrice(bidPrice);
 					existingCrypto.setName(name);
+					existingCrypto.setBidSource(url2);
+					existingCrypto.setAskSource(url2);
+					
 					cryptoService.save(existingCrypto);
 				}
 				else//updating existing crypto records
 				{
 					if(existingCrypto.getAskPrice() < askPrice && existingCrypto.getBidPrice() < bidPrice)
 					{
-						cryptoService.updateCrypto(bidPrice, askPrice, existingCrypto.getCryptoId());
+						cryptoService.updateBidDetailAndAskDetailById(bidPrice, askPrice, url2, url2, existingCrypto.getCryptoId());
 					}
 					else if(existingCrypto.getAskPrice() < askPrice)
 					{
-						bidPrice = existingCrypto.getBidPrice();
-						cryptoService.updateCrypto(bidPrice, askPrice, existingCrypto.getCryptoId());
+						cryptoService.updateAskDetailById(askPrice, url2, existingCrypto.getCryptoId());
 					}
 					else if(existingCrypto.getBidPrice() < bidPrice)
 					{
-						askPrice = existingCrypto.getAskPrice();
-						cryptoService.updateCrypto(bidPrice, askPrice, existingCrypto.getCryptoId());
+						cryptoService.updateBidDetailById(bidPrice, url2, existingCrypto.getCryptoId());
 					}
 				}
 			}

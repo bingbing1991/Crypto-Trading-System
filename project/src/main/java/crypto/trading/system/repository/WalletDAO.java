@@ -18,7 +18,7 @@ public interface WalletDAO extends JpaRepository<Wallet, Long>
 	
 	public List<Wallet> findAllByUserId(Long userId);
 	
-	public Wallet findByCryptoName(String cryptoName);
+	public Wallet findByCryptoNameAndUserId(String cryptoName, Long id);
 	
 	@Transactional
 	@Modifying

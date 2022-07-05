@@ -31,9 +31,9 @@ public class WalletService
 		return walletDAO.save(wallet);
 	}
 	
-	public Wallet findByCryptoName(String name)
+	public Wallet findByCryptoNameAndUserId(String name, Long id)
 	{
-		Wallet wallet = walletDAO.findByCryptoName(name);
+		Wallet wallet = walletDAO.findByCryptoNameAndUserId(name, id);
 		return wallet;
 	}
 	

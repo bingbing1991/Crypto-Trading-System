@@ -23,8 +23,8 @@ public class TradingTransaction
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_sequence_generator")
-    @SequenceGenerator(name = "transaction_sequence_generator", sequenceName = "SEQ_TRANSACTION")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TRANSACTION_ID")
+	@SequenceGenerator(name = "SEQ_TRANSACTION_ID", initialValue = 2, allocationSize = 1, sequenceName = "SEQ_TRANSACTION_ID")
 	@Column(name = "id") 
 	private Long transactionId;
 	
@@ -42,6 +42,9 @@ public class TradingTransaction
 	
 	@Column(name = "taken_crypto_amount")
 	private float takenCryptoAmount;
+	
+	@Column(name = "source")
+	private String source;
 	
 	@Column(name = "transaction_timestamp")
 	private Timestamp transactionTimestamp;
@@ -100,6 +103,14 @@ public class TradingTransaction
 
 	public void setTakenCryptoAmount(float takenCryptoAmount) {
 		this.takenCryptoAmount = takenCryptoAmount;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
 	}
 
 	

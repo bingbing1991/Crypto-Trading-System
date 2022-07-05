@@ -19,6 +19,16 @@ public interface CryptoDAO extends JpaRepository<Crypto, Long>
 	
 	@Transactional
 	@Modifying
-	@Query("update Crypto c set c.bidPrice = ?1, c.askPrice=?2 where c.id = ?3")
-	public void updateCryptoById(float bidPrice, float askPrice, Long id);
+	@Query("update Crypto c set c.bidPrice = ?1, c.askPrice=?2 , c.bidSource= ?3 , c.askSource=?4 where c.id = ?5")
+	public void updateBidDetailAndAskDetailById(float bidPrice, float askPrice, String bidSource, String askSource, Long id);
+
+	@Transactional
+	@Modifying
+	@Query("update Crypto c set c.bidPrice = ?1, c.bidSource= ?2 where c.id = ?3")
+	public void updateBidDetailById(float bidPrice, String bidSource, Long id);
+
+	@Transactional
+	@Modifying
+	@Query("update Crypto c set c.askPrice = ?1, c.askSource= ?2 where c.id = ?3")
+	public void updateAskDetailById(float askPrice, String askSource, Long id);
 }

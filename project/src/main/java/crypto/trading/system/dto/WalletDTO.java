@@ -4,7 +4,7 @@ public class WalletDTO
 {
 	private String cryptoName;
 
-	private String cryptoAmount;
+	private float cryptoAmount;
 
 	public String getCryptoName() {
 		return cryptoName;
@@ -14,11 +14,11 @@ public class WalletDTO
 		this.cryptoName = cryptoName;
 	}
 
-	public String getCryptoAmount() {
+	public float getCryptoAmount() {
 		return cryptoAmount;
 	}
 
-	public void setCryptoAmount(String cryptoAmount) {
+	public void setCryptoAmount(float cryptoAmount) {
 		this.cryptoAmount = cryptoAmount;
 	}
 	

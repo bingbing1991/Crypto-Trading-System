@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name = "Wallet")
@@ -17,7 +18,8 @@ public class Wallet
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_WALLET_ID")
+	@SequenceGenerator(name = "SEQ_WALLET_ID", initialValue = 2, allocationSize = 1, sequenceName = "SEQ_WALLET_ID")
 	@Column(name = "id") 
 	private Long walletId;
 	
@@ -28,7 +30,7 @@ public class Wallet
 	private String cryptoName;
 
 	@Column(name = "crypto_amount")
-	private String cryptoAmount;
+	private float cryptoAmount;
 
 	public Long getWalletId() {
 		return walletId;
@@ -54,11 +56,11 @@ public class Wallet
 		this.cryptoName = cryptoName;
 	}
 
-	public String getCryptoAmount() {
+	public float getCryptoAmount() {
 		return cryptoAmount;
 	}
 
-	public void setCryptoAmount(String cryptoAmount) {
+	public void setCryptoAmount(float cryptoAmount) {
 		this.cryptoAmount = cryptoAmount;
 	}
 	

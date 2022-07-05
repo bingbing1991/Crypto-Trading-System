@@ -51,6 +51,10 @@ public class CryptoController
 	
 	Logger logger = LoggerFactory.getLogger(CryptoController.class);
 	
+	/*
+	 * API TO RETRIEVE A SPECIFIED CRYPTOCURRENCIES TRADE PAIR BEST AGGREGATED PRICE FROM DB
+	 * 
+	 * */
 	@GetMapping("/getSpecificCryptoBestPrice")
 	public ResponseEntity<JsonWrapperObject> getSpecificCryptoBestPrice(@RequestBody String input) throws Exception
 	{
@@ -78,6 +82,10 @@ public class CryptoController
 		return ResponseEntity.status(HttpStatus.OK).body(result);
 	}
 	
+	/*
+	 * API TO RETRIEVE ALL CRYPTOCURRENCIES TRADE PAIR BEST AGGREGATED PRICE FROM DB
+	 * 
+	 * */
 	@GetMapping("/getAllCryptoBestPrice")
 	public ResponseEntity<JsonWrapperObject> getAllCryptoBestPrice() throws Exception
 	{
@@ -91,6 +99,7 @@ public class CryptoController
 			dto.setAskPrice(Float.toString(c.getAskPrice()));
 			dto.setBidPrice(Float.toString(c.getBidPrice()));
 			dto.setSymbol(c.getName());
+			dto.setCryptoTradePairId(c.getCryptoId());
 			dtoList.add(dto);
 		}
 		
